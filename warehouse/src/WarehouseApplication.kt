@@ -16,6 +16,7 @@ import io.ktor.request.receiveOrNull
 import io.ktor.response.respond
 import io.ktor.routing.get
 import io.ktor.routing.put
+import io.ktor.routing.route
 import io.ktor.routing.routing
 import io.ktor.server.netty.EngineMain
 import io.ktor.util.KtorExperimentalAPI
@@ -27,11 +28,11 @@ fun main(args: Array<String>): Unit = EngineMain.main(args)
 @Suppress("unused") // Referenced in application.conf
 @JvmOverloads
 fun Application.module(testing: Boolean = false) {
-//  install(ContentNegotiation) {
-//    jackson {
-//      enable(SerializationFeature.INDENT_OUTPUT)
-//    }
-//  }
+  install(ContentNegotiation) {
+    jackson {
+      enable(SerializationFeature.INDENT_OUTPUT)
+    }
+  }
 
   install(Authentication) {
     basic {
@@ -52,7 +53,7 @@ fun Application.module(testing: Boolean = false) {
     authenticate {
       put("/stock/{item}") {
         val itemName = call.parameters.getOrFail("item")
-        val stock = call.receiveOrNull<StockDto>() ?: throw BadRequestException("Missing required body")
+        val stock = call.receiveOrNull<StockDto>()!!
         warehouse.update(itemName, stock.quantity ?: 0)
 
 

@@ -14,7 +14,8 @@ import io.ktor.util.KtorExperimentalAPI
 class ShoppingCartService(application: Application) {
 
     private val shoppingCartUrl by lazy {
-        application.environment.config.property("orders.shoppingcartUrl").getString()
+        application.environment.config
+            .property("orders.shoppingcartUrl").getString()
     }
 
     suspend fun getShoppingCart(): Cart {

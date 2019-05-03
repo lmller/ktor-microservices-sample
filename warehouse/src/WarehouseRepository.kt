@@ -30,17 +30,17 @@ private object StockTable : UUIDTable() {
     val quantity = integer("quantity")
 
     fun insertTestData() {
-        insert {
-            it[itemName] = "Fish"
-            it[quantity] = 100
+        insert { column ->
+            column[itemName] = "Fish"
+            column[quantity] = 100
         }
-        insert {
-            it[itemName] = "Beef"
-            it[quantity] = 100
+        insert { column ->
+            column[itemName] = "Beef"
+            column[quantity] = 100
         }
-        insert {
-            it[itemName] = "Lamb"
-            it[quantity] = 50
+        insert { column ->
+            column[itemName] = "Lamb"
+            column[quantity] = 50
         }
     }
 }
