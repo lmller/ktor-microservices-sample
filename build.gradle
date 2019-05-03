@@ -13,3 +13,7 @@ apply plugin: 'application'
 
 group 'catfood'
 version '0.0.1'
+
+repositories {
+    jcenter()
+}
